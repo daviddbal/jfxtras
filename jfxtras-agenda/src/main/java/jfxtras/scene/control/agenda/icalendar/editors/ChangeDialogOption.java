@@ -1,4 +1,4 @@
-package jfxtras.scene.control.agenda.icalendar;
+package jfxtras.scene.control.agenda.icalendar.editors;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -6,13 +6,14 @@ import java.time.temporal.Temporal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import javafx.util.Pair;
 import jfxtras.icalendarfx.components.VDisplayable;
 import jfxtras.icalendarfx.properties.PropertyType;
 import jfxtras.icalendarfx.utilities.DateTimeUtilities;
-import jfxtras.scene.control.agenda.icalendar.deleters.Deleter;
-import jfxtras.scene.control.agenda.icalendar.revisors.Reviser;
+import jfxtras.scene.control.agenda.icalendar.editors.deleters.Deleter;
+import jfxtras.scene.control.agenda.icalendar.editors.revisors.Reviser;
 
 /**
  * Options available when editing or deleting a repeatable appointment.
@@ -51,7 +52,8 @@ public enum ChangeDialogOption
        }
         
        Temporal lastRecurrence = vComponentEdited.lastRecurrence();
-       Temporal firstRecurrence = vComponentEdited.streamRecurrences().findFirst().get();
+       Stream<Temporal> s = vComponentEdited.streamRecurrences();
+       Temporal firstRecurrence = s.findFirst().get();
        boolean isLastRecurrence = (lastRecurrence == null) ? false : startRecurrence.equals(lastRecurrence);
        boolean isAfterLastRecurrence = (lastRecurrence == null) ? false : DateTimeUtilities.isAfter(startRecurrence, lastRecurrence);
        boolean isFirstRecurrence = startRecurrence.equals(firstRecurrence);
