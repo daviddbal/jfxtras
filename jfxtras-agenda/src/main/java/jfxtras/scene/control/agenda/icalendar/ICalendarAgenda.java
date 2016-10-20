@@ -427,7 +427,7 @@ public class ICalendarAgenda extends Agenda
         
         // setup i18n resource bundle
         Locale myLocale = Locale.getDefault();
-        ResourceBundle resources = ResourceBundle.getBundle("jfxtras.labs.icalendaragenda.ICalendarAgenda", myLocale);
+        ResourceBundle resources = ResourceBundle.getBundle("jfxtras.ICalendarAgenda", myLocale);
         Settings.setup(resources);
         
         /*

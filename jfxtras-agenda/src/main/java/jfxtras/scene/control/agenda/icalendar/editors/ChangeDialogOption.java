@@ -52,6 +52,7 @@ public enum ChangeDialogOption
        }
         
        Temporal lastRecurrence = vComponentEdited.lastRecurrence();
+       // TODO - Gradle requires variable s.  I can't inline it or I get a compile error.
        Stream<Temporal> s = vComponentEdited.streamRecurrences();
        Temporal firstRecurrence = s.findFirst().get();
        boolean isLastRecurrence = (lastRecurrence == null) ? false : startRecurrence.equals(lastRecurrence);
